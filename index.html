@@ -135,27 +135,18 @@
   <div class="stream-main">
     <div class="stream-video">
       <div class="stream-player-box">
-        <video id="liveVideo" controls autoplay muted playsinline></video>
+        <video id="liveVideo" controls autoplay muted playsinline webkit-playsinline></video>
+
+        <!-- TAP TO PLAY (mobile autoplay fallback) -->
+        <div class="tap-to-play" id="tapToPlay">
+          <button class="tap-to-play__btn" id="tapToPlayBtn" type="button">Tap to play</button>
+        </div>
 
         <!-- PLACEHOLDER -->
         <div class="stream-placeholder" id="streamPlaceholder">
           <div class="ph-title" id="phTitle">This event is not live yet</div>
           <div class="ph-timer" id="phTimer">--</div>
           <div class="ph-sub" id="phSub">Starting soon</div>
-        </div>
-        <!-- PAYWALL PLACEHOLDER (over everything) -->
-        <div class="paywall" id="paywall">
-          <div class="paywall__card">
-            <div class="paywall__text">
-              In order to view this event you must Join fz pass or purchase a single ppv
-            </div>
-
-            <button class="paywall__btn" id="paywallGoVip" type="button">
-              Basic or higher
-            </button>
-
-            <a class="paywall__link" href="#" id="paywallSeeVip">See VIP plans</a>
-          </div>
         </div>
       </div>
     </div>
@@ -186,7 +177,7 @@
   <div class="container topbar__inner">
     <div class="topbar__left">
       <div class="topbar__brand">
-        <img src="./fz-logo.png" alt="FZ">
+        <img src="./img/fz-logo.png" alt="FZ">
         <span class="brand__name">Fightzone</span>
       </div>
 
@@ -223,27 +214,8 @@
         Live
       </h2>
 
-      <div class="cards-wrap">
-        <div class="cards cards--1-wide">
-<div class="card"
-            data-event="ufc325"
-            data-mode="early"
-            data-start="2026-01-31T23:00:00"
-            data-title="UFC 325: Volkanovski vs. Lopes 2"
-            data-meta="Saturday, Jan 31 · ESPN">
-            <div class="card__media card__media--image" style="background-image:url('./ufc-325.jpg')"></div>
-            <div class="card__footer">
-              <div class="card__title">UFC 325: Volkanovski vs. Lopes 2</div>
-              <div class="card__meta">
-                <span class="card__source">ESPN</span>
-                <div class="card__right">
-                  <div class="card__liveBadge"><span class="liveDotSmall"></span>Live</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <div class="noLiveBox">
+        No events are live right now. Scroll down to see what's on later.
       </div>
     </section>
 
@@ -254,6 +226,24 @@
         <button class="cards-arrow cards-arrow--left" aria-label="Scroll left">‹</button>
 
         <div class="cards cards--1-wide">
+          <div class="card"
+            data-event="ufc325"
+            data-mode="early"
+            data-start="2026-01-31T23:00:00"
+            data-title="UFC 325: Volkanovski vs. Lopes 2"
+            data-meta="Saturday, Jan 31 · ESPN">
+            <div class="card__media card__media--image" style="background-image:url('./img/ufc-325.jpg')"></div>
+            <div class="card__footer">
+              <div class="card__title">UFC 325: Volkanovski vs. Lopes 2</div>
+              <div class="card__meta">
+                <span class="card__source">ESPN</span>
+                <div class="card__right">
+                  <div class="card__date">Saturday, Jan 31</div>
+                  <div class="card__timer" id="ufc-timer">--</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="card"
             data-event="bautista"
@@ -261,7 +251,7 @@
             data-start="2026-02-08T00:00:00"
             data-title="UFC: Bautista vs. Oliveira"
             data-meta="Sunday, Feb 8 · ESPN">
-            <div class="card__media card__media--image card__media--bautista" style="background-image:url('./020726-ufc-fight-night-bautista-vs-oliveira-1024x576.jpg')"></div>
+            <div class="card__media card__media--image card__media--bautista" style="background-image:url('./img/020726-ufc-fight-night-bautista-vs-oliveira-1024x576.jpg')"></div>
             <div class="card__footer">
               <div class="card__title">UFC: Bautista vs. Oliveira</div>
               <div class="card__meta">
@@ -280,7 +270,7 @@
             data-start="2026-02-22T00:00:00"
             data-title="UFC: Strickland vs Hernandez"
             data-meta="Sunday, Feb 22 · UFC">
-            <div class="card__media card__media--image" style="background-image:url('./022126-ufc-fight-night-strickland-vs-hernandez-1024x576.jpg')"></div>
+            <div class="card__media card__media--image" style="background-image:url('./img/022126-ufc-fight-night-strickland-vs-hernandez-1024x576.jpg')"></div>
             <div class="card__footer">
               <div class="card__title">UFC: Strickland vs Hernandez</div>
               <div class="card__meta">
@@ -299,7 +289,7 @@
             data-start="2026-03-01T00:00:00"
             data-title="UFC: Moreno vs. Almabayev"
             data-meta="Sunday, Mar 1 · UFC">
-            <div class="card__media card__media--image" style="background-image:url('./022826-ufc-fight-night-moreno-vs-almabayev-1024x576.jpg')"></div>
+            <div class="card__media card__media--image" style="background-image:url('./img/022826-ufc-fight-night-moreno-vs-almabayev-1024x576.jpg')"></div>
             <div class="card__footer">
               <div class="card__title">UFC: Moreno vs. Almabayev</div>
               <div class="card__meta">
@@ -328,7 +318,7 @@
           <div class="card"
                data-title="Boxing: Event 1"
                data-meta="Coming soon · Boxing">
-            <div class="card__media card__media--image" style="background-image:url('./joshua-vs-fury-enhanced-1024x576.jpg')"></div>
+            <div class="card__media card__media--image" style="background-image:url('./img/joshua-vs-fury-enhanced-1024x576.jpg')"></div>
             <div class="card__footer">
               <div class="card__title">Tyson Fury vs Anthony Joshua</div>
               <div class="card__meta">
@@ -344,7 +334,7 @@
           <div class="card"
                data-title="Boxing: Event 2"
                data-meta="Coming soon · Boxing">
-            <div class="card__media card__media--image" style="background-image:url('./makhmudov-vs-fury-1024x576.jpg')"></div>
+            <div class="card__media card__media--image" style="background-image:url('./img/makhmudov-vs-fury-1024x576.jpg')"></div>
             <div class="card__footer">
               <div class="card__title">Tyson Fury vs Arslanbek Makhmudov</div>
               <div class="card__meta">
@@ -360,7 +350,7 @@
           <div class="card"
                data-title="Boxing: Event 3"
                data-meta="Coming soon · Boxing">
-            <div class="card__media card__media--image" style="background-image:url('./barrios-vs-garcia-1024x576.jpg')"></div>
+            <div class="card__media card__media--image" style="background-image:url('./img/barrios-vs-garcia-1024x576.jpg')"></div>
             <div class="card__footer">
               <div class="card__title">Mario Barrios vs. Ryan Garcia</div>
               <div class="card__meta">
@@ -376,7 +366,7 @@
           <div class="card"
                data-title="Boxing: Event 4"
                data-meta="Coming soon · Boxing">
-            <div class="card__media card__media--image" style="background-image:url('./wilder-vs-chisora-1024x576.jpg')"></div>
+            <div class="card__media card__media--image" style="background-image:url('./img/wilder-vs-chisora-1024x576.jpg')"></div>
             <div class="card__footer">
               <div class="card__title">Deontay Wilder vs. Derek Chisora</div>
               <div class="card__meta">
@@ -485,38 +475,38 @@
       <div class="vip-grid">
 
         <div class="vip-card">
-          <h3 class="vip-card__title">UFC 325 - basic</h3>
+          <h3 class="vip-card__title">Basic</h3>
           <div class="vip-price">
-            <div class="vip-price__main">$5</div>
-            <div class="vip-price__sub">/per stream</div>
+            <div class="vip-price__main">€5</div>
+            <div class="vip-price__sub">/month</div>
           </div>
-          <button class="vip-btn" type="button" data-stripe-url="https://buy.stripe.com/cNi14o1yf26CeUSaQzdIA0F">Select</button>
+          <button class="vip-btn" type="button">Select</button>
           <ul class="vip-features">
-            <li>Access to only one event</li>
+            <li>Feature item</li><li>Feature item</li><li>Feature item</li><li>Feature item</li><li>Feature item</li>
           </ul>
         </div>
 
         <div class="vip-card">
-          <h3 class="vip-card__title">Fightzone Pass</h3>
+          <h3 class="vip-card__title">Premium</h3>
           <div class="vip-price">
-            <div class="vip-price__main">$10</div>
-            <div class="vip-price__sub">/per month</div>
+            <div class="vip-price__main">€10</div>
+            <div class="vip-price__sub">/month</div>
           </div>
-          <button class="vip-btn" type="button" data-stripe-url="https://buy.stripe.com/8x23cwccTbHc2866AjdIA0H">Select</button>
+          <button class="vip-btn" type="button">Select</button>
           <ul class="vip-features">
-            <li>ACCESS TO ALL STREAMS UFC/BOXING</li><li>HD+ Quality</li> <li>HIGHER DISCORD SUPPORT</li> <li>CHAT BOX </li> <li>ZERO ADS / POP UP ADS</li>
+            <li>Feature item</li><li>Feature item</li><li>Feature item</li><li>Feature item</li><li>Feature item</li>
           </ul>
         </div>
 
         <div class="vip-card">
-          <h3 class="vip-card__title">FightZone Elite Pass</h3>
+          <h3 class="vip-card__title">VIP</h3>
           <div class="vip-price">
-            <div class="vip-price__main">$25</div>
-            <div class="vip-price__sub"></div>
+            <div class="vip-price__main">€25</div>
+            <div class="vip-price__sub">/month</div>
           </div>
-          <button class="vip-btn" type="button" data-stripe-url="https://buy.stripe.com/aFabJ2dgX26C1423o7dIA0I">Select</button>
+          <button class="vip-btn" type="button">Select</button>
           <ul class="vip-features">
-            <li>ALL OF FZ PASS</li><li>ACCESS TO MYSTIC MAC BET BUILDERS/PICKS</li> <li>ACCESS TO VODS ON DEMAND STREAMS</li><li>ACCESS TO ALL STREAMS UFC/BOXING</li><li>HD+ Quality</li> <li>HIGHER DISCORD SUPPORT</li> <li>CHAT BOX </li> <li>ZERO ADS / POP UP ADS</li>
+            <li>Feature item</li><li>Feature item</li><li>Feature item</li><li>feature item</li><li>Feature item</li>
           </ul>
         </div>
 
@@ -665,11 +655,6 @@
     });
   }
 
-  // expose for other scripts
-  window.setActivePage = setActivePage;
-  window.closeOverlaySafe = closeOverlaySafe;
-
-
   navItems.forEach(a => {
     a.addEventListener("click", (e) => {
       e.preventDefault();
@@ -704,7 +689,6 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    verifySessionIfPresent();
     const EPS = 2;
 
     document.querySelectorAll(".cards-wrap").forEach((wrap) => {
@@ -751,68 +735,8 @@
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-  <script>
-    // -------- Fightzone access (localStorage + optional Worker verify) --------
-    // Stores access after Stripe checkout in localStorage, so paywall can be removed.
-    // If you don't use Worker verify yet, you can still manually set access for testing.
-    const FZ_ACCESS_KEY = "fightzone_access_v1";
-
-    function fzNowSec() { return Math.floor(Date.now() / 1000); }
-
-    function getAccess() {
-      try { return JSON.parse(localStorage.getItem(FZ_ACCESS_KEY) || "null"); } catch(e) { return null; }
-    }
-
-    function setAccess(rec) {
-      try { localStorage.setItem(FZ_ACCESS_KEY, JSON.stringify(rec || null)); } catch(e) {}
-    }
-
-    function clearAccess() { try { localStorage.removeItem(FZ_ACCESS_KEY); } catch(e) {} }
-
-    // Basic+ means: basic, premium, vip and still active
-    function hasBasicAccess() {
-      const rec = getAccess();
-      if (!rec || !rec.tier) return false;
-      if (rec.tier === "vip") return true;
-      if (rec.expiresAt == null) return false;
-      return Number(rec.expiresAt) > fzNowSec();
-    }
-
-    // If user returns from Stripe with ?session_id=cs_..., verify it and store access.
-    async function verifySessionIfPresent() {
-      const url = new URL(window.location.href);
-      const sessionId = url.searchParams.get("session_id") || url.searchParams.get("cs");
-      if (!sessionId) return;
-
-      // Change this to your own Worker domain if different:
-      const VERIFY_URL = "https://fightzone.godzilammd.workers.dev/api/verify?session_id=" + encodeURIComponent(sessionId);
-
-      try {
-        const res = await fetch(VERIFY_URL, { method: "GET" });
-        const data = await res.json();
-
-        if (data && data.ok && data.active) {
-          setAccess({
-            tier: data.tier || "basic",
-            expiresAt: data.expiresAt ?? null,
-            email: data.email || null,
-            sessionId
-          });
-        }
-      } catch (e) {
-        // ignore (user can still proceed; paywall will remain until verified)
-      }
-
-      // Clean URL (remove session_id so refresh doesn't re-verify)
-      url.searchParams.delete("session_id");
-      url.searchParams.delete("cs");
-      window.history.replaceState({}, document.title, url.toString());
-    }
-  </script>
-
 <script>
-  const STREAM_SRC = "https://shed-recognised-investing-deviant.trycloudflare.com/hls/stream.m3u8";
+  const STREAM_SRC = "https://achieve-discs-talented-consult.trycloudflare.com/hls/stream.m3u8";
 
   function formatDiff(ms) {
     if (ms <= 0) return "LIVE";
@@ -850,8 +774,7 @@
     if (!video) return;
 
     if (window.__hls_inited) {
-      video.play().catch(() => {});
-      return;
+            video.play().then(() => showTapToPlay(false)).catch(() => showTapToPlay(true));return;
     }
 
     window.__hls_inited = true;
@@ -862,14 +785,12 @@
       hls.attachMedia(video);
 
       hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play().catch(() => {});
-      });
+              video.play().then(() => showTapToPlay(false)).catch(() => showTapToPlay(true));});
 
       window.__hls_instance = hls;
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = STREAM_SRC;
-      video.play().catch(() => {});
-    }
+            video.play().then(() => showTapToPlay(false)).catch(() => showTapToPlay(true));}
   }
 
   function stopVideo() {
@@ -877,28 +798,26 @@
     if (v) {
       try { v.pause(); } catch(e) {}
     }
+    showTapToPlay(false);
   }
 
   function setPlaceholder(on, titleText, timerText, subText) {
     const ph = document.getElementById("streamPlaceholder");
-    const t  = document.getElementById("phTitle");
-    const tm = document.getElementById("phTimer");
-    const s  = document.getElementById("phSub");
-
     if (!ph) return;
 
-    if (on) ph.classList.add("is-on");
-    else ph.classList.remove("is-on");
+    if (!on) {
+      ph.classList.remove("is-on");
+      return;
+    }
 
-    if (t && titleText != null) t.textContent = titleText;
-    if (tm && timerText != null) tm.textContent = timerText;
-    if (s && subText != null) s.textContent = subText;
-  }
+    ph.classList.add("is-on");
 
-  function setPaywall(on) {
-    const pw = document.getElementById("paywall");
-    if (!pw) return;
-    pw.classList.toggle("is-on", !!on);
+    const t  = document.getElementById("phTitle");
+    const tm = document.getElementById("phTimer");
+    const s  = document.getElementById("phHint");
+    if (t  && typeof titleText === "string") t.textContent = titleText;
+    if (tm && typeof timerText === "string") tm.textContent = timerText;
+    if (s  && typeof subText   === "string") s.textContent = subText;
   }
 
   let overlayPollTimer = null;
@@ -911,61 +830,35 @@
 
     const now = Date.now();
     const startMs = start ? start.getTime() : null;
-    const beforeStart = (startMs != null) ? (now < startMs) : true;
+    const beforeStart = (startMs != null) ? (now < startMs) : false;
 
-    // PAYWALL: show until user has Basic+ access
-    setPaywall(!hasBasicAccess());
-
-    if (beforeStart) {
-      const diff = startMs != null ? (startMs - now) : 0;
-      setPlaceholder(true, "This event is not live yet", formatDiff(diff), "Come back when the timer ends");
-    } else {
-      setPlaceholder(true, "Starting soon", "00d 00h 00m 00s", "Waiting for the stream to start");
-    }
-
-    const live = await isStreamLive();
-
-    const canShow =
-      (mode === "early")
-        ? live
-        : (!beforeStart && live);
-
-    // Gate video behind paywall
-    if (!hasBasicAccess()) {
-      stopVideo();
+    if (mode === "early") {
+      // Ignore time entirely for this card (Bautista). Keep it simple and stable.
+      setPlaceholder(false);
+      showTapToPlay(true);
+      startVideo();
       return;
     }
 
-    if (canShow) {
-      setPaywall(false);
-      setPlaceholder(false);
-      startVideo();
-    } else {
+    // STRICT events: show message if too early, otherwise allow playback.
+    if (beforeStart) {
+      const diff = startMs != null ? (startMs - now) : 0;
+      setPlaceholder(true, "This event is not live yet", formatDiff(diff), "Come back when the timer ends");
       stopVideo();
+      showTapToPlay(false);
+      return;
     }
+
+    // After start time: try video; placeholder will disappear on playing
+    setPlaceholder(false);
+    showTapToPlay(true);
+    startVideo();
   }
 
   function startOverlayTimers(card) {
+    // Simplified: no polling/timers to avoid page "refresh" feeling.
     clearInterval(overlayCountdownTimer);
-    overlayCountdownTimer = setInterval(() => {
-      const start = getEventStart(card);
-      if (!start) return;
-
-      const now = Date.now();
-      const diff = start.getTime() - now;
-
-      const ph = document.getElementById("streamPlaceholder");
-      if (ph && ph.classList.contains("is-on") && diff > 0) {
-        const tm = document.getElementById("phTimer");
-        if (tm) tm.textContent = formatDiff(diff);
-      }
-    }, 1000);
-
     clearInterval(overlayPollTimer);
-    overlayPollTimer = setInterval(() => {
-      if (!activeCard) return;
-      applyOverlayState(activeCard);
-    }, 5000);
   }
 
   function openOverlayFromCard(card) {
@@ -999,34 +892,15 @@
 
     stopVideo();
     setPlaceholder(false);
-    setPaywall(false);
   }
 
   // expose for nav script
   window.closeOverlay = closeOverlay;
 
   document.addEventListener("DOMContentLoaded", () => {
-    verifySessionIfPresent();
-    // Card clicks -> open overlay (delegated, works even with nested elements)
-    document.addEventListener('click', (e) => {
-      const card = e.target.closest('.card');
-      if (!card) return;
-      // ignore clicks on arrows or inside header/nav
-      if (e.target.closest('.cards-arrow') || e.target.closest('.topbar')) return;
-      openOverlayFromCard(card);
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", () => openOverlayFromCard(card));
     });
-const goVipBtn = document.getElementById("paywallGoVip");
-    if (goVipBtn) {
-      goVipBtn.addEventListener("click", () => {
-        closeOverlay();
-        if (typeof window.setActivePage === "function") {
-          window.setActivePage("vip");
-        } else {
-          const vipLink = document.querySelector('.nav__item[data-page="vip"]');
-          if (vipLink) vipLink.click();
-        }
-      });
-    }
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeOverlay();
@@ -1039,17 +913,6 @@ const goVipBtn = document.getElementById("paywallGoVip");
       });
     }
   });
-
-
-// VIP page: Select -> Stripe Payment Links
-  document.addEventListener("click", (e) => {
-    const btn = e.target.closest(".vip-btn");
-    if (!btn) return;
-    const url = btn.getAttribute("data-stripe-url");
-    if (!url) return;
-    window.location.href = url;
-  });
-
 </script>
 
 </body>
